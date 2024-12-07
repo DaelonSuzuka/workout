@@ -17,6 +17,7 @@ class ExerciseCard(ui.card):
 class RoutineCard(ui.card):
     def __init__(self):
         super().__init__()
+        self.classes('w-full')
         self.props('flat bordered')
         self.exercises = []
 
@@ -24,11 +25,14 @@ class RoutineCard(ui.card):
             with ui.row().classes('w-full justify-between items-center'):
                 ui.input('Routine Name:')
                 ui.button('Add Exercise', on_click=self.new_exercise)
+            ui.separator()
 
             self.exercise_container = ui.column()
             self.exercise_container.classes('w-full items-center')
 
-            ui.button('Submit Routine', on_click=self.on_submit)
+            with ui.row().classes('w-full justify-between items-center'):
+                ui.label('')
+                ui.button('Submit Routine', on_click=self.on_submit)
 
     def new_exercise(self):
         with self.exercise_container:
@@ -54,7 +58,7 @@ class WorkoutApp(ui.column):
 
             self.routine_container = ui.column()
             self.routine_container.classes('w-full')
-            ui.button('add record', on_click=self.new_routine)
+            ui.button('add routine', on_click=self.new_routine)
 
     def new_routine(self):
         with self.routine_container:
